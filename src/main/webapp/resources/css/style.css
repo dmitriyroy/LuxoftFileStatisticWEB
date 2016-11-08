@@ -1,0 +1,182 @@
+/*
+    Created on : 11.08.2014, 11:41:49
+    Author     : Дима
+*/
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: #d0fae9;
+    overflow:scroll;
+}
+
+a{
+    text-decoration:none;
+    color: blue;
+}
+a:hover{
+    text-decoration: underline;
+    color: #467dc0;
+}
+
+#mainMenu{
+    width: 100%;
+    height: 40px;
+    background: #f6bf7d;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+#mainMenu ul{
+    width: 420px;
+    height: 40px;
+    margin: 0 auto;
+}
+
+#mainMenu li{
+    height: 30px;
+    margin-top: 3px;
+    float: left;
+    list-style:none;
+    text-align: center;
+    overflow: hidden;
+}
+
+#mainMenu li:first-child a{
+    border-left: 1px solid #666;
+}
+#mainMenu a{
+    display: block;
+    margin-top: 3px;
+    padding: 4px 7px 7px 7px;
+    border-right: 1px solid #666;
+    color: #123456;
+    text-decoration: none;
+}
+#mainMenu a:hover{
+    color: #123456;
+    text-decoration: none;
+}
+.button_back_area{
+    height: 25px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.button_back{
+    width: 70px;
+    height: 25px;
+    float: left;
+}
+
+.employee_foto{
+    height: 150px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.employee_foto img{
+    float: left;
+    border: 1px solid #999;
+}
+
+#indexCenter{
+    width: 550px;
+    height: 400px;
+    margin: 0 auto;
+    margin-top: 100px;
+    text-align: center;
+}
+
+#indexCenter h4{
+    color: #7a4404;
+}
+.enterpriseInfo{
+    margin: 50px 0px;
+}
+
+.developers{
+    font-style: italic;
+    color: #222;
+}
+
+table{
+    /*width: 50%;*/
+    margin: 0 auto;
+    margin-top: 20px;
+    border-spacing: 0;
+    border: 1px solid #999;
+}
+#table_center{
+    width: 80%;
+}
+.tableHeader{
+    background: #e6e6e6;
+    text-align: center;
+}
+table caption{
+    font-weight: bold;
+}
+.textCenter{
+    text-align: center;
+}
+td{
+    padding:2px 7px;
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
+    border-left: none;
+    border-top: none;
+    background: #fff;
+    vertical-align: top;
+}
+td:last-child{
+    border-right:none;
+}
+.borderNone{
+    border:none;
+}
+.borderNone td{
+    border:none;
+    background: none;
+}
+.searchFormName{
+    color: blue;
+    text-align: center;
+}
+.searchForm{
+    margin-bottom: 30px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.searchForm input[type="text"]{
+    width: 250px;
+    margin-bottom: 7px;
+}
+.searchFormLabel{
+
+}
+.searchFormButton{
+    width: 90px;
+    height: 25px;
+    margin-left: 272px;
+}
+.lName{
+    margin-left: 41px;
+}
+.fName{
+    margin-left: 76px;
+}
+.pName{
+    margin-left: 44px;
+}
+.login{
+    margin-left: 65px;
+}
+.contact{
+    margin-left: 52px;
+}
+.name{
+    margin-left: 7px;
+}
