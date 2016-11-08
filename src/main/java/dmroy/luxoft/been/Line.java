@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 @XmlRootElement(name = "line")
 @XmlAccessorType(value = XmlAccessType.FIELD)
 public class Line {
+    private long fileId;
     private String fileName;
     private int lineNumber;
     private String maxWord;
@@ -25,6 +26,14 @@ public class Line {
     private int averageWordLength;
     private long allWordsLength;
     private int wordsCount;
+
+    public long getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(long fileId) {
+        this.fileId = fileId;
+    }
 
     public String getFileName() {
         return fileName;
@@ -100,9 +109,8 @@ public class Line {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 31 * hash + Objects.hashCode(this.fileName);
-        hash = 31 * hash + this.lineNumber;
+        int hash = 7;
+        hash = 97 * hash + (int) (this.fileId ^ (this.fileId >>> 32));
         return hash;
     }
 
@@ -118,10 +126,7 @@ public class Line {
             return false;
         }
         final Line other = (Line) obj;
-        if (this.lineNumber != other.lineNumber) {
-            return false;
-        }
-        if (!Objects.equals(this.fileName, other.fileName)) {
+        if (this.fileId != other.fileId) {
             return false;
         }
         return true;
@@ -129,8 +134,7 @@ public class Line {
 
     @Override
     public String toString() {
-        return "Line{" + "fileName=" + fileName + ", lineNumber=" + lineNumber + ", maxWord=" + maxWord + ", minWord=" + minWord + ", minWordLength=" + minWordLength + ", maxWordLength=" + maxWordLength + ", averageWordLength=" + averageWordLength + ", wordsLength=" + allWordsLength + ", wordsCount=" + wordsCount + '}';
-    }    
-    
-    
+        return "Line{" + "fileId=" + fileId + ", fileName=" + fileName + ", lineNumber=" + lineNumber + ", maxWord=" + maxWord + ", minWord=" + minWord + ", minWordLength=" + minWordLength + ", maxWordLength=" + maxWordLength + ", averageWordLength=" + averageWordLength + ", allWordsLength=" + allWordsLength + ", wordsCount=" + wordsCount + '}';
+    }
+       
 }
