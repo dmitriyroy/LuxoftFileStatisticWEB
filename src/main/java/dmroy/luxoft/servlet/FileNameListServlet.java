@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,9 +42,10 @@ public class FileNameListServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+//        response.setContentType("text/html;charset=windows-1251");
 
 //        System.out.println("\n FileNameListServlet processRequest 0 \n");
-        List<String> fileList = fileStatisticDao.getAllFileStaticticName();
+        Map<String,Long> fileList = fileStatisticDao.getAllFileStaticticName();
 //        System.out.println("\n FileNameListServlet processRequest 1 \n");
 
         try (PrintWriter out = response.getWriter()) {
@@ -55,9 +57,14 @@ public class FileNameListServlet extends HttpServlet {
                                 + "<tr>"
                                     + "<td class=\"tableHeader\">Название файла</td>"
                                 + "</tr>");
-            for (String fileName : fileList){
-                printRow(out,fileName);
+            for (Map.Entry<String, Long> entry : fileList.entrySet()) {
+                String fileName = entry.getKey();
+                Long fileId = entry.getValue();
+                printRow(out,fileName, fileId);
             }
+//            for (String fileName : fileList){
+//                
+//            }
             out.println("</table>");
             out.println(pageContent.getFooter());
         }
@@ -124,10 +131,10 @@ public class FileNameListServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void printRow(PrintWriter out,String fileName){
+    private void printRow(PrintWriter out,String fileName,Long fileId){
         out.println("<tr>"
                         + "<td>"
-                            + "<a href=\"fileStatistics?fileName="+fileName+"\" title=\"Информация о файле\">" + fileName  + "</a>"
+                            + "<a href=\"fileStatistics?fileId="+fileId+"\" title=\"Информация о файле\">" + fileName  + "</a>"
                         + "</td>"
                     + "</tr>");
     }

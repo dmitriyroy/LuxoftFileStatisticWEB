@@ -7,6 +7,7 @@ import dmroy.luxoft.been.FileStatistic;
 import dmroy.luxoft.been.Line;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,12 +41,14 @@ public class FileStatisticServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        System.out.println("\n\n >>>>>>>>>>>  request.getParameter(\"fileName\") (UTF-8)= " + request.getParameter("fileName"));
-        request.setCharacterEncoding("cp1251");
-        System.out.println("\n\n >>>>>>>>>>>  request.getParameter(\"fileName\") (cp1251)= " + request.getParameter("fileName"));
+//        request.setCharacterEncoding("UTF-8");
+//        System.out.println("\n\n >>>>>>>>>>>  request.getParameter(\"fileName\") (UTF-8)= " + request.getParameter("fileName"));
+//        request.setCharacterEncoding("cp1251");
+//        System.out.println("\n\n >>>>>>>>>>>  request.getParameter(\"fileName\") (cp1251)= " + request.getParameter("fileName"));
+//        System.out.println("\n\n >>>>>>>>>>>  request.getParameter(\"fileName\") (URLDecoder.decode())= " + URLDecoder.decode(request.getParameter("fileName"), "UTF-8"));
+//        URLDecoder.decode(request.getParameter("fileName"), "UTF-8");
 //        fileStatistic = ;
-        List<Line> lineList = fileStatisticDao.getFileStatictic(request.getParameter("fileName")).getLineList();
+        List<Line> lineList = fileStatisticDao.getFileStatictic(Long.parseLong(request.getParameter("fileId"))).getLineList();
 
         System.out.println("\n FileStatisticServlet() processRequest 1 \n");
 
@@ -57,6 +60,7 @@ public class FileStatisticServlet extends HttpServlet {
                                 +"<caption>"+title+"</caption>"
                                 + "<tr>"
                                     + "<td class=\"tableHeader\">Название файла</td>"
+//                                    + "<td class=\"tableHeader\">ID файла</td>"
                                     + "<td class=\"tableHeader\">Номер строки</td>"
                                     + "<td class=\"tableHeader\">Самое короткое слово</td>"
                                     + "<td class=\"tableHeader\">Самое длинное слово</td>"
@@ -113,6 +117,7 @@ public class FileStatisticServlet extends HttpServlet {
 //                                +"<caption>"+title+"</caption>"
 //                                + "<tr>"
 //                                    + "<td class=\"tableHeader\">Название файла</td>"
+////                                    + "<td class=\"tableHeader\">ID файла</td>"
 //                                    + "<td class=\"tableHeader\">Номер строки</td>"
 //                                    + "<td class=\"tableHeader\">Самое короткое слово</td>"
 //                                    + "<td class=\"tableHeader\">Самое длинное слово</td>"
@@ -147,6 +152,9 @@ public class FileStatisticServlet extends HttpServlet {
                         + "<td>"
                             + line.getFileName()
                         + "</td>"
+//                        + "<td  class=\"textCenter\">"
+//                            + line.getFileId()
+//                        + "</td>"
                         + "<td  class=\"textCenter\">"
                             + line.getLineNumber()
                         + "</td>"

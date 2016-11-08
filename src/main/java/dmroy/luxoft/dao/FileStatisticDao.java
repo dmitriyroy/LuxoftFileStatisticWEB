@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -57,6 +58,7 @@ public class FileStatisticDao implements FileStatisticDaoInterface{
         }
 
         String SQL_QUERY = "INSERT INTO file_statistic (               "
+                                                   + "  FILE_ID,       "
                                                    + "  FILE_NAME,     "
                                                    + "  LINE_NUMBER,   "
                                                    + "  MIN_WORD,      "
@@ -67,14 +69,14 @@ public class FileStatisticDao implements FileStatisticDaoInterface{
                                                    + "  ALL_WORD_LEN,  "
                                                    + "  WORDS_CNT      "
                                                    + " )               "
-                          + "VALUES (?,?,?,?,?,?,?,?,?)";
+                          + "VALUES (?,?,?,?,?,?,?,?,?,?)";
         for(Line line:lineList){
             try{
                 jdbcTemplate.update(SQL_QUERY,
-                                   new Object[] {line.getFileName(), line.getLineNumber(), line.getMinWord(),
+                                   new Object[] {line.getFileId(), line.getFileName(), line.getLineNumber(), line.getMinWord(),
                                    line.getMaxWord(), line.getMinWordLength(), line.getMaxWordLength(),
                                    line.getAverageWordLength(), line.getAllWordsLength(), line.getWordsCount()},
-                                   new int[]{Types.VARCHAR, Types.INTEGER, Types.VARCHAR,
+                                   new int[]{Types.BIGINT, Types.VARCHAR, Types.INTEGER, Types.VARCHAR,
                                              Types.VARCHAR, Types.INTEGER, Types.INTEGER,
                                              Types.INTEGER, Types.BIGINT, Types.INTEGER});
 //                Logger.getLogger(FileStatisticDao.class.getName()).log(Level.INFO, "Файл {0}, трока № {1} добавлена в базу данных.", new Object[]{line.getFileName(), line.getLineNumber()});
@@ -88,8 +90,9 @@ public class FileStatisticDao implements FileStatisticDaoInterface{
     }
 
     @Override
-    public FileStatistic getFileStatictic(String fileName) {
-        String SQL_QUERY =   " SELECT FILE_NAME,     "
+    public FileStatistic getFileStatictic(Long fileId) {
+        String SQL_QUERY =   " SELECT FILE_ID,       "
+                           + "        FILE_NAME,     "
                            + "        LINE_NUMBER,   "
                            + "        MIN_WORD,      "
                            + "        MAX_WORD,      "
@@ -99,24 +102,26 @@ public class FileStatisticDao implements FileStatisticDaoInterface{
                            + "        ALL_WORD_LEN,  "
                            + "        WORDS_CNT      "
                            + "   FROM file_statistic "
-                           + "  WHERE FILE_NAME = ?  ";
+                           + "  WHERE FILE_ID = ?  ";
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(SQL_QUERY,
-                new Object[]{fileName},
-                new int[]{Types.VARCHAR});
+                new Object[]{fileId},
+                new int[]{Types.BIGINT});
         List<Line> lineList = getLineList(rows);
         return new FileStatistic(lineList);
     }
 
     @Override
-    public List<String> getAllFileStaticticName() {
+    public Map<String,Long> getAllFileStaticticName() {
 //        System.out.println("-------------------getAllFileStaticticName()");
-        String SQL_QUERY =   " SELECT distinct FILE_NAME FROM file_statistic ";
+        String SQL_QUERY =   " SELECT distinct FILE_NAME, FILE_ID FROM file_statistic ";
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(SQL_QUERY);
-        List<String> fileNameList = new ArrayList<>();
+        List<Map<String,Long>> fileNameList = new ArrayList<>();
+        Map<String,Long> outCollection = new HashMap<>();
         for(Map row:rows){
-            fileNameList.add((String)row.get("FILE_NAME"));
+            outCollection.put((String)row.get("FILE_NAME"),Long.parseLong((String)row.get("FILE_ID")));
+//            fileNameList.add((String)row.get("FILE_NAME"));
         }
-        return fileNameList;
+        return outCollection;
     }
 
     public List<Line> getLineList(List<Map<String, Object>> rows){

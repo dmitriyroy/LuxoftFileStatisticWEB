@@ -2,8 +2,8 @@ package dmroy.luxoft.dao;
 
 import dmroy.luxoft.been.FileStatistic;
 import dmroy.luxoft.been.Line;
-import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -11,6 +11,6 @@ import java.util.List;
  */
 public interface FileStatisticDaoInterface {
     public void addFileStatistic(List<Line> lineList);
-    public FileStatistic getFileStatictic(String fileName);
-    public List<String> getAllFileStaticticName();
+    public FileStatistic getFileStatictic(Long fileId);
+    public Map<String,Long> getAllFileStaticticName();
 }

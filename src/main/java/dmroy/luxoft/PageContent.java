@@ -22,7 +22,7 @@ public class PageContent {
                         +"<div id=\"mainMenu\">\n"
                             +"<ul>\n"
                                 +"<li><a href=\"index.htm\">Главная</a></li>\n"
-                                +"<li><a href=\"fileparser/add/D:/!!!_tmp/Books/Кирпичи.txt\">Обработать файл</a></li>\n"
+//                                +"<li><a href=\"fileparser/add/\">Обработать файл</a></li>\n"
                                 +"<li><a href=\"fileparser/getAllFileStaticticName\">Список обработанных файлов</a></li>\n"
                             +"</ul>\n"
                         +"</div>"
