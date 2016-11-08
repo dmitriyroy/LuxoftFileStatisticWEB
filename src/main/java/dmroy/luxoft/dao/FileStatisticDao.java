@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
  *
  * @author dmitriyroy
  */
-@Repository("fileStatisticDao")
+//@Repository("fileStatisticDao")
 @Component
 public class FileStatisticDao implements FileStatisticDaoInterface{
 
