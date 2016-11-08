@@ -4,9 +4,7 @@ import dmroy.luxoft.dao.FileStatisticDao;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.context.support.XmlWebApplicationContext;
 
 /**
  *
