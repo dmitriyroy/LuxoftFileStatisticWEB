@@ -118,7 +118,7 @@ public class FileStatisticDao implements FileStatisticDaoInterface{
         List<Map<String,Long>> fileNameList = new ArrayList<>();
         Map<String,Long> outCollection = new HashMap<>();
         for(Map row:rows){
-            outCollection.put((String)row.get("FILE_NAME"),Long.parseLong((String)row.get("FILE_ID")));
+            outCollection.put((String)row.get("FILE_NAME"),(Long)row.get("FILE_ID"));
 //            fileNameList.add((String)row.get("FILE_NAME"));
         }
         return outCollection;
