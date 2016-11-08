@@ -2,13 +2,6 @@ package dmroy.luxoft.dao;
 
 import dmroy.luxoft.been.FileStatistic;
 import dmroy.luxoft.been.Line;
-import dmroy.luxoft.util.FileUtils;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -115,11 +108,9 @@ public class FileStatisticDao implements FileStatisticDaoInterface{
 //        System.out.println("-------------------getAllFileStaticticName()");
         String SQL_QUERY =   " SELECT distinct FILE_NAME, FILE_ID FROM file_statistic ";
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(SQL_QUERY);
-        List<Map<String,Long>> fileNameList = new ArrayList<>();
         Map<String,Long> outCollection = new HashMap<>();
         for(Map row:rows){
             outCollection.put((String)row.get("FILE_NAME"),(Long)row.get("FILE_ID"));
-//            fileNameList.add((String)row.get("FILE_NAME"));
         }
         return outCollection;
     }
