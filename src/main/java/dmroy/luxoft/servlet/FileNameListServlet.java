@@ -25,7 +25,7 @@ public class FileNameListServlet extends HttpServlet {
 //    private FileStatistic fileStatistic;
 
     public FileNameListServlet(){
-        System.out.println("-------- FileNameListServlet() 123 ---------------------");
+//        System.out.println("-------- FileNameListServlet() 123 ---------------------");
         new MainContext();
     }
 
@@ -42,15 +42,9 @@ public class FileNameListServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        System.out.println("\n FileNameListServlet processRequest 0 \n");
+//        System.out.println("\n FileNameListServlet processRequest 0 \n");
         List<String> fileList = fileStatisticDao.getAllFileStaticticName();
-
-//        List<String> fileList = new ArrayList<>();
-//        fileList.add("Кирпичи");
-//        fileList.add("Дон Кихот");
-//        fileList.add("Эрос");
-
-        System.out.println("\n FileNameListServlet processRequest 1 \n");
+//        System.out.println("\n FileNameListServlet processRequest 1 \n");
 
         try (PrintWriter out = response.getWriter()) {
             PageContent pageContent = new PageContent();
@@ -133,7 +127,7 @@ public class FileNameListServlet extends HttpServlet {
     private void printRow(PrintWriter out,String fileName){
         out.println("<tr>"
                         + "<td>"
-                            + "<a href=\"fileStatistics/"+fileName+"\">" + fileName  + "</a>"
+                            + "<a href=\"fileStatistics?fileName="+fileName+"\" title=\"Информация о файле\">" + fileName  + "</a>"
                         + "</td>"
                     + "</tr>");
     }

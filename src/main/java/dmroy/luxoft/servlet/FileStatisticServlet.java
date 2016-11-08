@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "FileStatisticServlet", urlPatterns = {"/fileStatistics"})
 public class FileStatisticServlet extends HttpServlet {
 
-    private FileStatistic fileStatistic;
+//    private FileStatistic fileStatistic;
 
     public FileStatisticServlet(){
         System.out.println("\n----------------- поднимаем контекст FileStatisticServlet() :: new MainContext() ---------------------\n");
@@ -40,9 +40,9 @@ public class FileStatisticServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        fileStatistic = fileStatisticDao.getFileStatictic(request.getParameter("fileName"));
-        List<Line> lineList = fileStatistic.getLineList();
+        System.out.println("\n\n >>>>>>>>>>>  request.getParameter(\"fileName\") = " + request.getParameter("fileName"));
+//        fileStatistic = ;
+        List<Line> lineList = fileStatisticDao.getFileStatictic(request.getParameter("fileName")).getLineList();
 
         System.out.println("\n FileStatisticServlet() processRequest 1 \n");
 
@@ -53,7 +53,7 @@ public class FileStatisticServlet extends HttpServlet {
             out.println("<table id=\"table_center\">"
                                 +"<caption>"+title+"</caption>"
                                 + "<tr>"
-                                    + "<td class=\"tableHeader\">Название книги</td>"
+                                    + "<td class=\"tableHeader\">Название файла</td>"
                                     + "<td class=\"tableHeader\">Номер строки</td>"
                                     + "<td class=\"tableHeader\">Самое короткое слово</td>"
                                     + "<td class=\"tableHeader\">Самое длинное слово</td>"
@@ -95,40 +95,39 @@ public class FileStatisticServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
-        String fileName = request.getParameter("fileName");
-        try (PrintWriter out = response.getWriter()) {
-            PageContent pageContent = new PageContent();
-            String title = "Статистика строк в файле.";
-            out.println(pageContent.getHeader(title));
-            out.println("<table id=\"table_center\">"
-                                +"<caption>"+title+"</caption>"
-                                + "<tr>"
-                                    + "<td class=\"tableHeader\">Название книги</td>"
-                                    + "<td class=\"tableHeader\">Номер строки</td>"
-                                    + "<td class=\"tableHeader\">Самое короткое слово</td>"
-                                    + "<td class=\"tableHeader\">Самое длинное слово</td>"
-                                    + "<td class=\"tableHeader\">Длина короткого слова</td>"
-                                    + "<td class=\"tableHeader\">Длина длинного слова</td>"
-                                    + "<td class=\"tableHeader\">Средняя длина слова</td>"
-                                    + "<td class=\"tableHeader\">Длина всех уникальных слов</td>"
-                                    + "<td class=\"tableHeader\">Кол-во уникальных слов</td>"
-                                + "</tr>");
-
-            fileStatistic = fileStatisticDao.getFileStatictic(fileName);
-            List<Line> lineList = fileStatistic.getLineList();
-            for (Line line:lineList){
-                printRow(out, line);
-            }
-            out.println("</table>");
-            out.println(pageContent.getFooter());
-        }
-    }
+//    @Override
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//        request.setCharacterEncoding("UTF-8");
+//        response.setCharacterEncoding("UTF-8");
+//        response.setContentType("text/html;charset=UTF-8");
+//        String fileName = request.getParameter("fileName");
+//        try (PrintWriter out = response.getWriter()) {
+//            PageContent pageContent = new PageContent();
+//            String title = "Статистика строк в файле.";
+//            out.println(pageContent.getHeader(title));
+//            out.println("<table id=\"table_center\">"
+//                                +"<caption>"+title+"</caption>"
+//                                + "<tr>"
+//                                    + "<td class=\"tableHeader\">Название файла</td>"
+//                                    + "<td class=\"tableHeader\">Номер строки</td>"
+//                                    + "<td class=\"tableHeader\">Самое короткое слово</td>"
+//                                    + "<td class=\"tableHeader\">Самое длинное слово</td>"
+//                                    + "<td class=\"tableHeader\">Длина короткого слова</td>"
+//                                    + "<td class=\"tableHeader\">Длина длинного слова</td>"
+//                                    + "<td class=\"tableHeader\">Средняя длина слова</td>"
+//                                    + "<td class=\"tableHeader\">Длина всех уникальных слов</td>"
+//                                    + "<td class=\"tableHeader\">Кол-во уникальных слов</td>"
+//                                + "</tr>");
+//
+//            List<Line> lineList = fileStatisticDao.getFileStatictic(fileName).getLineList();
+//            for (Line line:lineList){
+//                printRow(out, line);
+//            }
+//            out.println("</table>");
+//            out.println(pageContent.getFooter());
+//        }
+//    }
 
     /**
      * Returns a short description of the servlet.
@@ -167,7 +166,8 @@ public class FileStatisticServlet extends HttpServlet {
                             + line.getAllWordsLength()
                         + "</td>"
                         + "<td  class=\"textCenter\">"
-                            + line.getWordsCount()
+//                            + line.getWordsCount()
+                            + 999
                         + "</td>"
                     + "</tr>");
     }

@@ -1,6 +1,6 @@
 package dmroy.luxoft.service;
 
-import dmroy.luxoft.controller.FileStatisticController;
+//import dmroy.luxoft.controller.FileStatisticController;
 import dmroy.luxoft.been.Line;
 import dmroy.luxoft.util.FileUtils;
 import java.awt.FileDialog;
@@ -188,7 +188,7 @@ public class FileParser implements FileParserInterface{
 //            w.close();
         } catch (IOException e) {
             // log error
-            Logger.getLogger(FileStatisticController.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(FileParser.class.getName()).log(Level.SEVERE, null, e);
         }
             return outList;
     }
