@@ -114,7 +114,7 @@ public class FileStatisticDao implements FileStatisticDaoInterface{
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(SQL_QUERY);
         List<String> fileNameList = new ArrayList<>();
         for(Map row:rows){
-            fileNameList.add((String)(row.get("FILE_NAME")));
+            fileNameList.add((String)row.get("FILE_NAME"));
         }
         return fileNameList;
     }
@@ -123,9 +123,9 @@ public class FileStatisticDao implements FileStatisticDaoInterface{
         List<Line> lineList = new ArrayList<>();
         for (Map row : rows) {
             Line line = new Line();
-            line.setFileName((String)(row.get("FILE_NAME")));
+            line.setFileName((String)row.get("FILE_NAME"));
             line.setLineNumber(Integer.parseInt(String.valueOf(row.get("LINE_NUMBER"))));
-            line.setMinWord((String)(row.get("MIN_WORD")));
+            line.setMinWord((String) row.get("MIN_WORD"));
             line.setMaxWord((String) row.get("MAX_WORD"));
             line.setMinWordLength(Integer.parseInt(String.valueOf(row.get("MIN_WORD_LEN"))));
             line.setMaxWordLength(Integer.parseInt(String.valueOf(row.get("MAX_WORD_LEN"))));

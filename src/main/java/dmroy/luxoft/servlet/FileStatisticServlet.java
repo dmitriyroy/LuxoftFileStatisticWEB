@@ -166,8 +166,7 @@ public class FileStatisticServlet extends HttpServlet {
                             + line.getAllWordsLength()
                         + "</td>"
                         + "<td  class=\"textCenter\">"
-//                            + line.getWordsCount()
-                            + 999
+                            + line.getWordsCount()
                         + "</td>"
                     + "</tr>");
     }
