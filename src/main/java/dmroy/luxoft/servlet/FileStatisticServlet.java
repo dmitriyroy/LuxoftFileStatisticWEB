@@ -54,7 +54,7 @@ public class FileStatisticServlet extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
             PageContent pageContent = new PageContent();
-            String title = "Информация об файлах.";
+            String title = "Информация об файле.";
             out.println(pageContent.getHeader(title));
             out.println("<table id=\"table_center\">"
                                 +"<caption>"+title+"</caption>"
@@ -111,7 +111,7 @@ public class FileStatisticServlet extends HttpServlet {
 //        String fileName = request.getParameter("fileName");
 //        try (PrintWriter out = response.getWriter()) {
 //            PageContent pageContent = new PageContent();
-//            String title = "Статистика строк в файле.";
+//            String title = "Информация об файле.";
 //            out.println(pageContent.getHeader(title));
 //            out.println("<table id=\"table_center\">"
 //                                +"<caption>"+title+"</caption>"
