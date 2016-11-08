@@ -3,11 +3,9 @@ package dmroy.luxoft.servlet;
 import dmroy.luxoft.MainContext;
 import static dmroy.luxoft.MainContext.fileStatisticDao;
 import dmroy.luxoft.PageContent;
-import dmroy.luxoft.been.FileStatistic;
 import dmroy.luxoft.been.Line;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLDecoder;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,15 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Дима
+ * @author dmitriyroy
  */
 @WebServlet(name = "FileStatisticServlet", urlPatterns = {"/fileStatistics"})
 public class FileStatisticServlet extends HttpServlet {
 
-//    private FileStatistic fileStatistic;
-
     public FileStatisticServlet(){
-//        System.out.println("\n----------------- поднимаем контекст FileStatisticServlet() :: new MainContext() ---------------------\n");
         new MainContext();
     }
 

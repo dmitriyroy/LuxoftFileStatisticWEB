@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 
 /**
  *
- * @author Дима
+ * @author dmitriyroy
  */
 @Controller
 public class MainContext {

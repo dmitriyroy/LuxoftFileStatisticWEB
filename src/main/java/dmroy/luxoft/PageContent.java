@@ -2,7 +2,7 @@ package dmroy.luxoft;
 
 /**
  *
- * @author Дима
+ * @author dmitriyroy
  */
 public class PageContent {
 

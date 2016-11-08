@@ -3,12 +3,8 @@ package dmroy.luxoft.servlet;
 import dmroy.luxoft.MainContext;
 import static dmroy.luxoft.MainContext.fileStatisticDao;
 import dmroy.luxoft.PageContent;
-import dmroy.luxoft.been.FileStatistic;
-import dmroy.luxoft.been.Line;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,15 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Дима
+ * @author dmitriyroy
  */
 @WebServlet(name = "FileNameListServlet", urlPatterns = {"/allFiles"})
 public class FileNameListServlet extends HttpServlet {
 
-//    private FileStatistic fileStatistic;
-
     public FileNameListServlet(){
-//        System.out.println("-------- FileNameListServlet() 123 ---------------------");
         new MainContext();
     }
 
