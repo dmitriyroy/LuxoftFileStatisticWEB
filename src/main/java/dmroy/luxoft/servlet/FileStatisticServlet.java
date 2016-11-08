@@ -150,11 +150,8 @@ public class FileStatisticServlet extends HttpServlet {
                         + "<td>"
                             + line.getMinWord()
                         + "</td>"
-//                        + "<td>"
-//                            + line.getMinWord()
-//                        + "</td>"
-                        + "<td"
-                            + "Вася = " + line.getMaxWord()
+                        + "<td>"
+                            + line.getMaxWord()
                         + "</td>"
                         + "<td  class=\"textCenter\">"
                             + line.getMinWordLength()
