@@ -40,7 +40,10 @@ public class FileStatisticServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        System.out.println("\n\n >>>>>>>>>>>  request.getParameter(\"fileName\") = " + request.getParameter("fileName"));
+        request.setCharacterEncoding("UTF-8");
+        System.out.println("\n\n >>>>>>>>>>>  request.getParameter(\"fileName\") (UTF-8)= " + request.getParameter("fileName"));
+        request.setCharacterEncoding("cp1251");
+        System.out.println("\n\n >>>>>>>>>>>  request.getParameter(\"fileName\") (cp1251)= " + request.getParameter("fileName"));
 //        fileStatistic = ;
         List<Line> lineList = fileStatisticDao.getFileStatictic(request.getParameter("fileName")).getLineList();
 
