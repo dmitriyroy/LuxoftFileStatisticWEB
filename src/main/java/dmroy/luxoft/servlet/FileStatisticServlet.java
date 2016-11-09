@@ -39,8 +39,6 @@ public class FileStatisticServlet extends HttpServlet {
 
         List<Line> lineList = fileStatisticDao.getFileStatictic(Long.parseLong(request.getParameter("fileId"))).getLineList();
 
-        System.out.println("\n FileStatisticServlet() processRequest 1 \n");
-
         try (PrintWriter out = response.getWriter()) {
             PageContent pageContent = new PageContent();
             String title = "Информация о файле.";
