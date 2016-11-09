@@ -3,11 +3,9 @@ package dmroy.luxoft.servlet;
 import dmroy.luxoft.MainContext;
 import static dmroy.luxoft.MainContext.fileStatisticDao;
 import dmroy.luxoft.PageContent;
-import dmroy.luxoft.been.FileStatistic;
 import dmroy.luxoft.been.Line;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLDecoder;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,10 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "FileStatisticServlet", urlPatterns = {"/fileStatistics"})
 public class FileStatisticServlet extends HttpServlet {
 
-//    private FileStatistic fileStatistic;
-
     public FileStatisticServlet(){
-        System.out.println("\n----------------- поднимаем контекст FileStatisticServlet() :: new MainContext() ---------------------\n");
         new MainContext();
     }
 
@@ -41,13 +36,7 @@ public class FileStatisticServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-//        request.setCharacterEncoding("UTF-8");
-//        System.out.println("\n\n >>>>>>>>>>>  request.getParameter(\"fileName\") (UTF-8)= " + request.getParameter("fileName"));
-//        request.setCharacterEncoding("cp1251");
-//        System.out.println("\n\n >>>>>>>>>>>  request.getParameter(\"fileName\") (cp1251)= " + request.getParameter("fileName"));
-//        System.out.println("\n\n >>>>>>>>>>>  request.getParameter(\"fileName\") (URLDecoder.decode())= " + URLDecoder.decode(request.getParameter("fileName"), "UTF-8"));
-//        URLDecoder.decode(request.getParameter("fileName"), "UTF-8");
-//        fileStatistic = ;
+
         List<Line> lineList = fileStatisticDao.getFileStatictic(Long.parseLong(request.getParameter("fileId"))).getLineList();
 
         System.out.println("\n FileStatisticServlet() processRequest 1 \n");
