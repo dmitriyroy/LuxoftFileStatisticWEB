@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
  *
  * @author dmitriyroy
  */
-@Repository("fileStatisticDao")
+//@Repository("fileStatisticDao")
 @Component
 public class FileStatisticDao implements FileStatisticDaoInterface{
 
@@ -102,14 +102,11 @@ public class FileStatisticDao implements FileStatisticDaoInterface{
 
     @Override
     public Map<String,Long> getAllFileStaticticName() {
-//        System.out.println("-------------------getAllFileStaticticName()");
         String SQL_QUERY =   " SELECT distinct FILE_NAME, FILE_ID FROM file_statistic ";
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(SQL_QUERY);
-        List<Map<String,Long>> fileNameList = new ArrayList<>();
         Map<String,Long> outCollection = new HashMap<>();
         for(Map row:rows){
             outCollection.put((String)row.get("FILE_NAME"),(Long)row.get("FILE_ID"));
-//            fileNameList.add((String)row.get("FILE_NAME"));
         }
         return outCollection;
     }
