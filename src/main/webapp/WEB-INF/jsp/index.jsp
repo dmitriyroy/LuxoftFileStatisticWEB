@@ -13,9 +13,9 @@
     <body>
         <div id="mainMenu">
             <ul>
-                <li><a href="index.htm">Главная</a></li>
+                <li><a id="mainMenuIndex" href="index.htm">Главная</a></li>
                 <!--<li><a href="fileparser/add/">Обработать файл</a></li>-->
-                <li><a href="allFiles">Список обработанных файлов</a></li>
+                <li id="mainMenuFileList"><a href="allFiles">Список обработанных файлов</a></li>
             </ul>
         </div>
 
