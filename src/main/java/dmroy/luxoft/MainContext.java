@@ -18,7 +18,6 @@ public class MainContext {
 
     public MainContext() {
         if (factory == null) {
-//            ApplicationContext context = new FileSystemXmlApplicationContext(path);
             ApplicationContext context = new ClassPathXmlApplicationContext("mainContext.xml");
             factory = (BeanFactory) context;
             MainContext.fileStatisticDao = (FileStatisticDao) factory.getBean("fileStatisticDao");
