@@ -2,13 +2,6 @@ package dmroy.luxoft.dao;
 
 import dmroy.luxoft.been.FileStatistic;
 import dmroy.luxoft.been.Line;
-import dmroy.luxoft.util.FileUtils;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,14 +9,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.activation.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
-//import org.springframework.jdbc.core.JdbcTemplate;
-//import org.springframework.stereotype.Repository;
 
 /**
  *
