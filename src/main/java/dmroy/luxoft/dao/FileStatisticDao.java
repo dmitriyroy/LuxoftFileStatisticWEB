@@ -101,7 +101,6 @@ public class FileStatisticDao implements FileStatisticDaoInterface{
 
     @Override
     public Map<String,Long> getAllFileStaticticName() {
-//        System.out.println("-------------------getAllFileStaticticName()");
         String SQL_QUERY =   " SELECT distinct FILE_NAME, FILE_ID FROM file_statistic ";
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(SQL_QUERY);
         Map<String,Long> outCollection = new HashMap<>();

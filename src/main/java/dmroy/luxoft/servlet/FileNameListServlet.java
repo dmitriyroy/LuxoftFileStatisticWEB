@@ -35,11 +35,8 @@ public class FileNameListServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-//        response.setContentType("text/html;charset=windows-1251");
 
-//        System.out.println("\n FileNameListServlet processRequest 0 \n");
         Map<String,Long> fileList = fileStatisticDao.getAllFileStaticticName();
-//        System.out.println("\n FileNameListServlet processRequest 1 \n");
 
         try (PrintWriter out = response.getWriter()) {
             PageContent pageContent = new PageContent();
@@ -55,9 +52,7 @@ public class FileNameListServlet extends HttpServlet {
                 Long fileId = entry.getValue();
                 printRow(out,fileName, fileId);
             }
-//            for (String fileName : fileList){
-//                
-//            }
+
             out.println("</table>");
             out.println(pageContent.getFooter());
         }
