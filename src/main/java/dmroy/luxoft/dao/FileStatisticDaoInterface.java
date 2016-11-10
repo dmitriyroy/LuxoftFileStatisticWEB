@@ -10,7 +10,8 @@ import java.util.Map;
  * @author dmitriyroy
  */
 public interface FileStatisticDaoInterface {
-    public void addFileStatistic(List<Line> lineList);
+    public void addFileStatistics(List<Line> lineList);
+    public void addFileStatistic(Line line);
     public FileStatistic getFileStatictic(Long fileId);
     public Map<String,Long> getAllFileStaticticName();
 }
