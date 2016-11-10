@@ -33,7 +33,7 @@ public class FileStatisticDao implements FileStatisticDaoInterface{
     }
 
     @Override
-    public void addFileStatistic(List<Line> lineList) {
+    public void addFileStatistics(List<Line> lineList) {
         // нужно делать проверку на наличие данных по такому файлу в базе
         // пока сделано такой заглушкой
         // просто удаляем данные по этому файлу
@@ -41,7 +41,7 @@ public class FileStatisticDao implements FileStatisticDaoInterface{
         String fileName = null;
         if(lineList.size() > 0){
             fileName = lineList.get(0).getFileName();
-            jdbcTemplate.update("DELETE file_statistic FROM file_statistic WHERE FILE_NAME = ? ",
+            jdbcTemplate.update("DELETE file_statistic FROM file_statistic WHERE FILE_NAME = ? and LINE_NUMBER = ? ",
                                 new Object[] { fileName},
                                 new int[]{Types.VARCHAR});
         }
@@ -76,6 +76,46 @@ public class FileStatisticDao implements FileStatisticDaoInterface{
             }
         }
         Logger.getLogger(FileStatisticDao.class.getName()).log(Level.INFO, "В базу данных добавлена информация по файлу {0}, вставлено {1} строк.", new Object[]{fileName, lineList.size()});
+    }
+
+    @Override
+    public void addFileStatistic(Line line) {
+        // нужно делать проверку на наличие данных по такому файлу в базе
+        // пока сделано такой заглушкой
+        // просто удаляем данные по этому файлу
+        // прим.: можно было обеспечить транзакционность, и пр....
+        jdbcTemplate.update("DELETE file_statistic FROM file_statistic WHERE FILE_NAME = ? and LINE_NUMBER = ? ",
+                            new Object[] { line.getFileName(), line.getLineNumber()},
+                            new int[]{Types.VARCHAR, Types.INTEGER});
+
+        String SQL_QUERY = "INSERT INTO file_statistic (               "
+                                                   + "  FILE_ID,       "
+                                                   + "  FILE_NAME,     "
+                                                   + "  LINE_NUMBER,   "
+                                                   + "  MIN_WORD,      "
+                                                   + "  MAX_WORD,      "
+                                                   + "  MIN_WORD_LEN,  "
+                                                   + "  MAX_WORD_LEN,  "
+                                                   + "  AVG_WORD_LEN,  "
+                                                   + "  ALL_WORD_LEN,  "
+                                                   + "  WORDS_CNT      "
+                                                   + " )               "
+                          + "VALUES (?,?,?,?,?,?,?,?,?,?)";
+        try{
+            jdbcTemplate.update(SQL_QUERY,
+                               new Object[] {line.getFileId(), line.getFileName(), line.getLineNumber(), line.getMinWord(),
+                               line.getMaxWord(), line.getMinWordLength(), line.getMaxWordLength(),
+                               line.getAverageWordLength(), line.getAllWordsLength(), line.getWordsCount()},
+                               new int[]{Types.BIGINT, Types.VARCHAR, Types.INTEGER, Types.VARCHAR,
+                                         Types.VARCHAR, Types.INTEGER, Types.INTEGER,
+                                         Types.INTEGER, Types.BIGINT, Types.INTEGER});
+//                Logger.getLogger(FileStatisticDao.class.getName()).log(Level.INFO, "Файл {0}, трока № {1} добавлена в базу данных.", new Object[]{line.getFileName(), line.getLineNumber()});
+//                System.out.println("Файл " + line.getFileName() + ", строка № " + line.getLineNumber() + " добавлена в базу данных.");
+        }catch(DataAccessException e){
+            Logger.getLogger(FileStatisticDao.class.getName()).log(Level.WARNING, "Ошибка добавления строки № {0} файла {1}.", new Object[]{line.getLineNumber(), line.getFileName()} );
+            System.out.println("Ошибка добавления строки № " + line.getLineNumber() + " файла " + line.getFileName() + " в базу данных.");
+        }
+        Logger.getLogger(FileStatisticDao.class.getName()).log(Level.INFO, "В базу данных добавлена информация по файлу {0}, вставлена строка №{1}.", new Object[]{line.getFileName(), line.getLineNumber()});
     }
 
     @Override
@@ -127,5 +167,4 @@ public class FileStatisticDao implements FileStatisticDaoInterface{
         }
         return lineList;
     }
-
 }
