@@ -29,7 +29,8 @@ a:hover{
 }
 
 #mainMenu ul{
-    width: 300px;
+/*    width: 300px; */
+    width: 1000px;
     height: 40px;
     margin: 0 auto;
 }
