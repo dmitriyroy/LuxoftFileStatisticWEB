@@ -30,9 +30,6 @@
             </ul>
         </div>
 
-        <script type="text/javascript">
-            getElementById('mainMenuIndex').onmouseover  = function(){ alert("Кликнули"); };
-        </script>
         <div id="indexCenter">
             <h4>
               WEB-интерфейс обработчика файлов для получения статистики его строк.
