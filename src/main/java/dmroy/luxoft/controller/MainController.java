@@ -21,7 +21,7 @@ public class MainController {
     @RequestMapping(value = "/test/{requestData}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void addTest(@PathVariable("requestData") Line requestData) {
-        System.out.println("\n\n\n  --------->>>>>>>>> Обработали запрос: addTest(). На вход прилетело: "+requestData);
+//        System.out.println("\n\n\n  --------->>>>>>>>> Обработали запрос: addTest(). На вход прилетело: "+requestData);
     }
 
     @RequestMapping(value = "/addFile/{fileId}/{fileName}/{lineNumber}/{minWord}/{maxWord}/{minWordLength}/{maxWordLength}/{averageWordLength}/{allWordsLength}/{wordsCount}", method = RequestMethod.GET)
@@ -30,7 +30,7 @@ public class MainController {
                         @PathVariable("maxWord") String maxWord, @PathVariable("minWordLength") int minWordLength, @PathVariable("maxWordLength") int maxWordLength,
                         @PathVariable("averageWordLength") int averageWordLength, @PathVariable("allWordsLength") long allWordsLength,@PathVariable("wordsCount") int wordsCount) {
 
-        System.out.println("\n\n\n  --------->>>>>>>>> Обработали запрос: addFileStatistic(). На вход прилетело: fileId="+fileId+"; fileName="+fileName+"; lineNumber="+lineNumber);
+//        System.out.println("\n\n\n  --------->>>>>>>>> Обработали запрос: addFileStatistic(). На вход прилетело: fileId="+fileId+"; fileName="+fileName+"; lineNumber="+lineNumber);
         Line line = new Line();
         line.setFileId(fileId);
         line.setFileName(fileName);
