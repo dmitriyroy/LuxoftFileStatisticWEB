@@ -20,6 +20,7 @@
 
     <mvc:annotation-driven />
     <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <context:component-scan base-package="dmroy.luxoft.controller" />
 
     <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
 
