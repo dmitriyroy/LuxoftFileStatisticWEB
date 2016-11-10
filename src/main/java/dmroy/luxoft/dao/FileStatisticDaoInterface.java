@@ -13,5 +13,6 @@ public interface FileStatisticDaoInterface {
     public void addFileStatistics(List<Line> lineList);
     public void addFileStatistic(Line line);
     public FileStatistic getFileStatictic(Long fileId);
-    public Map<String,Long> getAllFileStaticticName();
+    public List<Map<String,Object>> getAllFileStaticticName();
+    public List<Map<String,Object>> getAllFileStaticticName(int lineCount);
 }

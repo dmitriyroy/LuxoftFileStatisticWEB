@@ -16,27 +16,17 @@
             <ul>
                 <li id="mainMenuIndex"><a href="index.htm">Главная</a></li>
                 <!--<li><a href="fileparser/add/">Обработать файл</a></li>-->
-                <li id="mainMenuFileList">
-                    <ul>
-                        <li>
-                            Список обработанных файлов
-                        </li>
-                        <li>
-                            <a href="allFiles">Все файлы</a>
-                        </li>
-                        <li>
-                            <a href="allFiles">Файлы с менее чем 10 строк</a>
-                        </li>
-                        <li>
-                            <a href="allFiles">Файлы с более чем 10 строк</a>
-                        </li>
-                        <li>
-                            <a href="allFiles">Файлы с менее чем 100 строк</a>
-                        </li>
-                        <li>
-                            <a href="allFiles">Файлы с более чем 100 строк</a>
-                        </li>
-                    </ul>
+                <li id="mainMenuFileList"> 
+                <form id="fileChoose" action="allFiles">
+                    <input id="btnSumit" type="submit" value="Список обработанных файлов" >
+                <select id="selectForm" name="fileCount" onchange="" size="1" >
+                    <option value="all" style="">Все файлы</option>
+                    <option value="10">Файлы до 10 строк</option>
+                    <option value="50">Файлы до 50 строк</option>
+                    <option value="100">Файлы до 100 строк</option>
+                    <option value="500">Файлы до 500 строк</option>
+                </select>
+                </form>
                 </li>
             </ul>
         </div>

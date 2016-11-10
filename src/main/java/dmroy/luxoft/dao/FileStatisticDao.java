@@ -140,14 +140,46 @@ public class FileStatisticDao implements FileStatisticDaoInterface{
     }
 
     @Override
-    public Map<String,Long> getAllFileStaticticName() {
-        String SQL_QUERY =   " SELECT distinct FILE_NAME, FILE_ID FROM file_statistic ";
-        List<Map<String, Object>> rows = jdbcTemplate.queryForList(SQL_QUERY);
-        Map<String,Long> outCollection = new HashMap<>();
-        for(Map row:rows){
-            outCollection.put((String)row.get("FILE_NAME"),(Long)row.get("FILE_ID"));
-        }
-        return outCollection;
+    public List<Map<String,Object>> getAllFileStaticticName() {
+        String SQL_QUERY =  "SELECT FILE_NAME,                         "
+                           +"       FILE_ID,                           "
+                           +"       max(LINE_NUMBER) as \"LINE_COUNT\" "
+                           +"  FROM file_statistic                     "
+                           +"GROUP BY FILE_NAME, FILE_ID               ";
+//        List<Map<String, Object>> rows = jdbcTemplate.queryForList(SQL_QUERY);
+//        Map<String,Long> outCollection = new HashMap<>();
+//        for(Map row:rows){
+//            outCollection.put((String)row.get("FILE_NAME"),(Long)row.get("FILE_ID"));
+//        }
+//        return outCollection;
+        return jdbcTemplate.queryForList(SQL_QUERY);
+    }
+
+    @Override
+    public List<Map<String,Object>> getAllFileStaticticName(int lineCount) {
+        String SQL_QUERY =   "select t1.FILE_NAME,                               "
+                            +"       t1.FILE_ID,                                 "
+                            +"       t1.LINE_COUNT                               "
+                            +"  from (                                           "
+                            +"        select FILE_NAME,                          "
+                            +"               FILE_ID,                            "
+                            +"               max(LINE_NUMBER) as \"LINE_COUNT\"  "
+                            +"          from file_statistic                      "
+                            +"        group by FILE_NAME, FILE_ID                "
+                            +"       ) as t1                                     "
+                            +" where t1.LINE_COUNT < ?                           ";
+//        List<Map<String, Object>> rows = jdbcTemplate.queryForList(SQL_QUERY,new Object[]{lineCount});
+//        Map<String,Long> outCollection = new HashMap<>();
+//        for(Map<String, Object> m:rows){
+//            
+//        }
+//        for(Map row:rows){
+//            if(lineCount > (Integer)row.get("LINE_COUNT")){
+//                outCollection.put((String)row.get("FILE_NAME"),(Long)row.get("FILE_ID"));
+//            }
+//        }
+//        return outCollection;
+        return jdbcTemplate.queryForList(SQL_QUERY,new Object[]{lineCount});
     }
 
     public List<Line> getLineList(List<Map<String, Object>> rows){

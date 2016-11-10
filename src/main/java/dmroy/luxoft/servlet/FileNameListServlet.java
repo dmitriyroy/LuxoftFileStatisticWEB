@@ -5,6 +5,7 @@ import static dmroy.luxoft.MainContext.fileStatisticDao;
 import dmroy.luxoft.PageContent;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,8 +36,13 @@ public class FileNameListServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        Map<String,Long> fileList = fileStatisticDao.getAllFileStaticticName();
+        String fileCount = request.getParameter("fileCount");
+        List<Map<String,Object>> fileList = null;
+        if(fileCount.equals("all")){
+            fileList = fileStatisticDao.getAllFileStaticticName();
+        }else{
+            fileList = fileStatisticDao.getAllFileStaticticName(Integer.parseInt(fileCount));
+        }
 
         try (PrintWriter out = response.getWriter()) {
             PageContent pageContent = new PageContent();
@@ -46,12 +52,16 @@ public class FileNameListServlet extends HttpServlet {
                                 +"<caption>"+title+"</caption>"
                                 + "<tr>"
                                     + "<td class=\"tableHeader\">Название файла</td>"
+                                    + "<td class=\"tableHeader\">Кол-во строк</td>"
                                 + "</tr>");
-            for (Map.Entry<String, Long> entry : fileList.entrySet()) {
-                String fileName = entry.getKey();
-                Long fileId = entry.getValue();
-                printRow(out,fileName, fileId);
+            for(Map<String,Object> m:fileList){
+                printRow(out,(String)m.get("FILE_NAME"),(Long)m.get("FILE_ID"),(int)m.get("LINE_COUNT"));
             }
+//            for (Map.Entry<String, Long> entry : fileList.entrySet()) {
+//                String fileName = entry.getKey();
+//                Long fileId = entry.getValue();
+//                printRow(out,fileName, fileId);
+//            }
 
             out.println("</table>");
             out.println(pageContent.getFooter());
@@ -119,10 +129,13 @@ public class FileNameListServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void printRow(PrintWriter out,String fileName,Long fileId){
+    private void printRow(PrintWriter out,String fileName,Long fileId, int lineCount){
         out.println("<tr>"
                         + "<td>"
                             + "<a href=\"fileStatistics?fileId="+fileId+"\" title=\"Информация о файле\">" + fileName  + "</a>"
+                        + "</td>"
+                        + "<td class=\"textCenter\">"
+                            + lineCount
                         + "</td>"
                     + "</tr>");
     }
