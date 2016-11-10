@@ -8,6 +8,7 @@
         <title> ООО "IT-эксперт" - справочник </title>
         <link href="resources/css/style.css" rel="stylesheet" type="text/css">
         <script type="text/javascript" src="resources/js/script.js"></script>
+        <!--<script type="text/javascript" src="js/script.js"></script>-->
     </head>
 
     <body>
@@ -15,10 +16,34 @@
             <ul>
                 <li id="mainMenuIndex"><a href="index.htm">Главная</a></li>
                 <!--<li><a href="fileparser/add/">Обработать файл</a></li>-->
-                <li id="mainMenuFileList"><a href="allFiles">Список обработанных файлов</a></li>
+                <li id="mainMenuFileList">
+                    <ul>
+                        <li>
+                            Список обработанных файлов
+                        </li>
+                        <li>
+                            <a href="allFiles">Все файлы</a>
+                        </li>
+                        <li>
+                            <a href="allFiles">Файлы с менее чем 10 строк</a>
+                        </li>
+                        <li>
+                            <a href="allFiles">Файлы с более чем 10 строк</a>
+                        </li>
+                        <li>
+                            <a href="allFiles">Файлы с менее чем 100 строк</a>
+                        </li>
+                        <li>
+                            <a href="allFiles">Файлы с более чем 100 строк</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
 
+        <script type="text/javascript">
+            getElementById('mainMenuIndex').onmouseover  = function(){ alert("Кликнули"); };
+        </script>
         <div id="indexCenter">
             <h4>
               WEB-интерфейс обработчика файлов для получения статистики его строк.
